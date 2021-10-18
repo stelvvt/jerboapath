@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"
+        />
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>		
+        <style type="text/css">
+        html, body, #map {height: 100%; padding: 0; margin: 0;}
+        </style>
+    </head>
+    <body>
+	<style>
+	.leaflet-popup-close-button {
+   display: none; 
+}
+.leaflet-popup-content ul { list-style-type: none; padding: 0; }
+.leaflet-popup-content li { width: 100%; padding: 0px; margin-bottom: 5px;}
+.leaflet-popup-content li button { width: 100%; height: 100%}
+</style>
+        <div id="map"></div>
+        <script>          
+        var map = L.map('map', {attributionControl: false});
+        map.setView([48.776400, 44.736542], 18);
+		
+//        L.control.attribution({prefix:''}).addAttribution('<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>').addTo(map);  
+
+var google = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}&key=AIzaSyBHbIT8TvKo0ChE5J7O7ROzNgiHMoOf2nY',{
+    maxZoom: 21,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+var OMS = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 21,
+    id: 'mapbox/satellite-streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1Ijoic3RlbHZ2dCIsImEiOiJja3V3andpbGYxZWg5MnVvMGtnMHhmdHh5In0.jHjRIWFfaSNl0C6BhxgQvw'
+});
+
+var baseMaps = {
+	Google: google,
+	OMS: OMS,
+	mapbox: mapbox
+};
+
+L.marker([48.7769042, 44.7386841], {}).bindPopup('Старт').addTo(map);
+L.marker([48.7753529, 44.7338288], {}).bindPopup('Финиш').addTo(map);
+
+map.on('popupopen', function (){ //map is the name of map you gave to your leaflet map
+  $('.classoflabels').addClass('hidden');
+})
+map.on('popupclose', function (){ //map is the name of map you gave to your leaflet map
+  $('.classoflabels').removeClass('hidden');
+})
+
+L.popup({
+closeOnClick: false,
+  autoClose: false
+})
+    .setLatLng([48.7757529, 44.7331239])
+    .setContent('<h2>Вы нашли скрытый вопрос</h2>Сколько будет 2 + 2?<ul><li><button>три</button></li><li><button>четыре или может быть пять, а может и десять</button></li><li><button>пять</button></li><li><button>че?</button></li></ul>')
+    .openOn(map);
+
+        </script>        
+    </body>
+</html>
