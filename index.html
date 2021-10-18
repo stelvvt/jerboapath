@@ -78,12 +78,10 @@ closeOnClick: false,
     .setContent('<h2>Вы нашли скрытый вопрос</h2>Сколько будет 2 + 2?<ul><li><button>три</button></li><li><button>четыре или может быть пять, а может и десять</button></li><li><button>пять</button></li><li><button>че?</button></li></ul>')
     .openOn(map);
 
-var lc = L.control.locate({
-    position: 'topright',
-    strings: {
-        title: "Show me where I am, yo!"
-    }
-}).addTo(map);
+map.addControl(L.control.locate({
+       locateOptions: {
+               enableHighAccuracy: true
+}}));
 		
         </script>        
     </body>
