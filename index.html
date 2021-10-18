@@ -54,10 +54,10 @@ L.marker([48.7753529, 44.7338288], {}).bindPopup('Финиш').addTo(map);
 
 map.on('popupopen', function (){ //map is the name of map you gave to your leaflet map
   $('.classoflabels').addClass('hidden');
-})
+});
 map.on('popupclose', function (){ //map is the name of map you gave to your leaflet map
   $('.classoflabels').removeClass('hidden');
-})
+});
 
 L.popup({
 closeOnClick: false,
