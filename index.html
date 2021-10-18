@@ -22,11 +22,6 @@ html {
     text-size-adjust         : none
 }
 	
-@media screen and (max-width : 600px) {
-    .vulc__nav {
-        font-size:1.5em;
-    }
-}
 .leaflet-popup-close-button, .leaflet-control-locate { display: none; }
 .leaflet-popup-content ul { list-style-type: none; padding: 0; }
 .leaflet-popup-content li { width: 100%; padding: 0px; margin-bottom: 5px;}
@@ -85,7 +80,7 @@ var locator = L.control.locate({
                enableHighAccuracy: true
 }}).addTo(map);
 locator.start();
-		
+map.toggleFullscreen();		
         </script>        
     </body>
 </html>
