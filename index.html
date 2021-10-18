@@ -44,20 +44,15 @@ var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y
 });
 
 var baseMaps = {
-	Google: google,
 	OMS: OMS,
+	Google: google,
 	mapbox: mapbox
 };
 
+L.control.layers(baseMaps, {}).addTo(map);
+
 L.marker([48.7769042, 44.7386841], {}).bindPopup('Старт').addTo(map);
 L.marker([48.7753529, 44.7338288], {}).bindPopup('Финиш').addTo(map);
-
-map.on('popupopen', function (){ //map is the name of map you gave to your leaflet map
-  $('.classoflabels').addClass('hidden');
-});
-map.on('popupclose', function (){ //map is the name of map you gave to your leaflet map
-  $('.classoflabels').removeClass('hidden');
-});
 
 L.popup({
 closeOnClick: false,
