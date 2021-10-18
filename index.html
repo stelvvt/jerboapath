@@ -36,7 +36,9 @@ html {
 	    
         <script src="L.Control.Locate.min.js" ></script>
         <script>          
-        var map = L.map('map', {attributionControl: false});
+        var map = L.map('map', fullscreenControl: {
+        pseudoFullscreen: false
+    });
         map.setView([48.776400, 44.736542], 18);
 		
 //        L.control.attribution({prefix:''}).addAttribution('<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>').addTo(map);  
@@ -83,7 +85,6 @@ var locator = L.control.locate({
                enableHighAccuracy: true
 }}).addTo(map);
 locator.start();
-map.addControl(new L.Control.Fullscreen());
 		
         </script>        
     </body>
